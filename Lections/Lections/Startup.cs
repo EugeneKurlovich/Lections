@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,6 +23,7 @@ namespace Lections
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+          
             services.AddAuthentication(options =>
             {
                 options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -38,6 +40,12 @@ namespace Lections
               Toptions.ConsumerKey = "K4rGUY6SwKPcvCcm73TNFDMgr";
               Toptions.ConsumerSecret = "7v87qSbvOu4KIAVoVzwgYgN3q3oEutE0QVjz2xnrz9CJGXSIzK";
           })
+          .AddGoogle(Goptions =>
+          {
+              Goptions.ClientId = "996213987184-bqbklu8h12v8dtepvamr0j86sqvs0trj.apps.googleusercontent.com";
+              Goptions.ClientSecret = "LPDI1NPl3fOjE1g6TBgU_qae";
+          }
+          )
           .AddCookie();
 
             services.AddMvc();
