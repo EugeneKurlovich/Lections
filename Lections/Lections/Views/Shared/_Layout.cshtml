@@ -25,7 +25,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <a asp-area="" asp-controller="Authorization" asp-action="Index" class="navbar-brand">Sign In</a>
+                    @if (User.Identity.IsAuthenticated)
+                     {
+                <a asp-area="" asp-controller="Authorization" asp-action="SignOut" class="navbar-brand">Sign Out</a>
+                     }
+                    else
+                    {
+                <a asp-area="" asp-controller="Authorization" asp-action="Login" class="navbar-brand">Sign In</a>
+                     }
                 </ul>
             </div>
         </div>
