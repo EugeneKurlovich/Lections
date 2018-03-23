@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Lections.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,13 @@ namespace Lections.Controllers
         public IActionResult Sign(String provider)
         {
             return Challenge(new AuthenticationProperties { RedirectUri = "/" }, provider);
+        }
+
+        public IActionResult Registration([FromForm] User user)
+        {
+            string regData = $"Firstname: {user.firstname} Lastname: {user.lastname} Email: {user.email} Username: " +
+                $"{user.username} Password: {user.password}";
+            return Content(regData);
         }
 
         public async Task<IActionResult> Login()
