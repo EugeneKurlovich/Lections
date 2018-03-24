@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Lections.Models;
+using Lections.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lections.Controllers
@@ -34,12 +37,18 @@ namespace Lections.Controllers
             return Challenge(new AuthenticationProperties { RedirectUri = "/" }, provider);
         }
 
-        public IActionResult Registration([FromForm] User user)
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Registration([FromForm] User user)
         {
-            string regData = $"Firstname: {user.firstname} Lastname: {user.lastname} Email: {user.email} Username: " +
-                $"{user.username} Password: {user.password}";
-            return Content(regData);
+            EmailSender es = new EmailSender();
+            string url = Url.Action("Login", "Authorization", new { Email = user.email }, Request.Scheme);
+            es.ConfirmEmail(user.email, url);
+            return RedirectToAction("Index", "Home", new { Email = user.email });
         }
+
+
 
         public async Task<IActionResult> Login()
         {
