@@ -12,15 +12,15 @@
         <h2 style="color:white">Sign Up</h2>
         <form method="post">
             <label style="color:white">First Name</label>
-            <input type="text" name="firstname" class="form-control" placeholder="Input Name">
+            <input type="text" name="firstname" class="form-control" placeholder="Eugene"  autofocus required>
             <label style="color:white">Last Name</label>
-            <input type="text" name="lastname"class="form-control" placeholder="Input Lastname">
+            <input type="text" name="lastname"class="form-control" placeholder="Kurlovich"  autofocus required>
             <label style="color:white">Email Address</label>
-            <input type="email" name="email" class="form-control" placeholder="Input Email">
+            <input type="email" name="email" class="form-control"placeholder="Input correcy email" autofocus required>
             <label style="color:white">Username</label>
-            <input type="text" name="username" class="form-control" placeholder="Input Username">
+            <input type="text" name="username" class="form-control" placeholder="Username" autofocus required>
             <label style="color:white">Password</label>
-            <input type="password" name="password" class="form-control" placeholder="Input Password">    
+            <input type="password" name="password" class="form-control" placeholder="Input Password" autofocus required>    
      
             <input asp-controller="Authorization" asp-action="Registration" type="submit" value="Sign up" class="btn btn-lg btn-success btn-block">
             <div class="clearfix"></div>
