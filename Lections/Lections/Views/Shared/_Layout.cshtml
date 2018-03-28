@@ -24,23 +24,21 @@
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Lections</a>
             </div>
             <div class="navbar-collapse collapse">
-
-
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> @User.Identity.Name  <span class="caret"></span> </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a asp-controller="" asp-action="">Profile</a></li>
-                                <li><a asp-controller="Authorization" asp-action="SignOut">Sign Out</a></li>
-                            </ul>
-                    </ul>
-                }
-                else
-                {
-                    <a asp-area="" asp-controller="Authorization" asp-action="Login" class="navbar-brand">Sign In</a>
-                }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> @User.Identity.Name <span class="caret"></span> </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a asp-controller="" asp-action="">Profile</a></li>
+                                    <li><a asp-controller="Authorization" asp-action="SignOut">Sign Out</a></li>
+                                </ul>
+                        </ul>
+                    }
+                    else
+                    {
+                        <a asp-area="" asp-controller="Authorization" asp-action="Login" class="navbar-brand">Sign In</a>
+                    }
             </div>
         </div>
     </nav>

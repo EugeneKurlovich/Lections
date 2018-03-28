@@ -18,29 +18,34 @@
                         <h3 class="panel-title">Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form accept-charset="UTF-8" role="form">
+
+                        <form method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Your login" name="email" type="text">
+                                    <input class="form-control" placeholder="Your login" name="username" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Your password" name="password" type="password" value="">
+                                    <input class="form-control" placeholder="Your password" name="password" type="password">
                                 </div>
-                                <input class="btn btn-lg btn-success btn-block" type="submit" value="Sign In">
+
+                                <h3>@ViewBag.message </h3>
+
+                                <input class="btn btn-lg btn-success btn-block" type="submit" value="Sign In" asp-controller="Authorization" asp-action="SignIn">
                                 <input class="btn btn-lg btn-success btn-block" type="submit" asp-controller="Authorization" asp-action="SignUp" value="Sign Up">
                             </fieldset>
                         </form>
                         <hr />
-                        <center><h4>OR</h4></center>
-                        @foreach (var item in Model)
-                         {
-                             <a class="btn btn-primary login-button" asp-action="Sign" asp-route-provider="@item"> @item </a>
-                         }
+                        <div style="position:center">
+                            @foreach (var item in Model)
+                            {
+                                <a class="btn btn-primary login-button" asp-action="Sign" asp-route-provider="@item"> @item </a>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    </body>
+</body>
 </html>

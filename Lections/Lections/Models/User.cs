@@ -15,5 +15,11 @@ namespace Lections.Models
         public string password { get; set; }
         public bool emailConfirmed { get; set;}
         public bool isAdmin  {get; set;}
+
+        public User()
+        {
+            emailConfirmed = false;
+            isAdmin = false;
+        }
     }
 }
