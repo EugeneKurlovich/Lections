@@ -1,7 +1,81 @@
-﻿
-@{
-    ViewData["Title"] = "Index";
-}
+﻿@model User
+<html>
 
-<h2>Index</h2>
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <title> Profile</title>
+</head>
+
+<body style="background-color:black">
+    <div class="container">
+        <div class="row">
+
+            <h1 style="color:white">User Profile</h1>
+
+
+
+            <div class="panel-body" style="color:white; background-color:black; font-family:'Times New Roman', Times, serif">
+                <div class="row">
+
+                    <div class=" col-md-9 col-lg-9 ">
+                        <table class="table table-user-information">
+                            <tbody>
+                                <tr>
+                                    <td>Firstname</td>
+                                    <td>@Model.firstname</td>
+                                </tr>
+                                <tr>
+                                    <td>Lastname</td>
+                                    <td>@Model.lastname</td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td>@Model.email</td>
+                                </tr>
+
+                                <tr>
+                                <tr>
+                                    <td>Username</td>
+                                    <td>@Model.username</td>
+                                </tr>
+                                <tr>
+                                    <td>Stars</td>
+                                    <td>@Model.ammountStars</td>
+                                </tr>
+                                <tr>
+                                    <td>Lections</td>
+                                    <td>@Model.ammountLections</td>
+                                </tr>
+                                <tr>
+                                    <td>Admin</td>
+                                    @if (@Model.isAdmin)
+                                    {
+                                        <td>Yes</td>
+                                    }
+                                    else
+                                    {
+                                        <td>No</td>
+
+                                    }
+                                </tr>
+                            </tbody>
+                        </table>
+                        <input asp-controller="Profile" asp-action="" type="submit" value="My Lections" class="btn btn-lg btn-success btn-block">
+                        <input asp-controller="Profile" asp-action="" type="submit" value="Edit Profile" class="btn btn-lg btn-success btn-block">
+                        @if (@Model.isAdmin)
+                        {
+                            <input asp-controller="Profile" asp-action="" type="submit" value="Manage Users" class="btn btn-lg btn-success btn-block">
+                            <input asp-controller="Profile" asp-action="" type="submit" value="Manage Lections" class="btn btn-lg btn-success btn-block">
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
 
