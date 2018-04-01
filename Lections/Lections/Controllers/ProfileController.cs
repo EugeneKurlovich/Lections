@@ -18,6 +18,31 @@ namespace Lections.Controllers
             db = context;
         }
 
+        public IActionResult checkAdminL()
+        {
+            foreach (User user in db.Users)
+            {
+                if (user.username.Equals(User.Identity.Name) && user.isAdmin)
+                {
+                    return RedirectToAction("Lections", "Admin");
+                }
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        public IActionResult checkAdminU()
+        {
+            foreach (User user in db.Users)
+            {
+                if (user.username.Equals(User.Identity.Name) && user.isAdmin)
+                {
+                    return RedirectToAction("Users", "Admin");
+                }
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
         public IActionResult Index()
         {
             foreach (User user in db.Users)
