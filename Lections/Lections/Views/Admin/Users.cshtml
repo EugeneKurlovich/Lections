@@ -1,7 +1,51 @@
-﻿
+﻿@model IEnumerable<User>
 @{
     ViewData["Title"] = "Users";
 }
+<html>
 
-<h2>Users</h2>
+<head>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <h2 style="color:white">Users</h2>
+</head>
+
+<body style="background-color:black">
+    <div class="well">
+        <table class="table">
+            <tr><td>Username</td><td>Firstname</td><td>Lastname</td><td>Email</td><td>Password</td><td>Stars</td><td>Lections</td><td>Admin</td><td>ConfirmedEmail</td></tr>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td><a asp-controller="Admin" asp-action="AdminEdit">@item.username </a></td>
+                <td>@item.firstname</td>
+                <td>@item.lastname</td>
+                <td>@item.email</td>
+                <td>@item.password</td>
+                <td>@item.ammountStars</td>
+                <td>@item.ammountLections</td>
+                @if (@item.isAdmin)
+    {
+            <td>Yes</td>
+}
+else
+{
+            <td>No</td>
+
+}
+                @if (@item.emailConfirmed)
+    {
+            <td>Yes</td>
+}
+else
+{
+            <td>No</td>
+}
+            </tr>
+            }
+        </table>
+        </div>
+</body>
+</html>
 
