@@ -23,5 +23,19 @@ namespace Lections.Models
             emailConfirmed = false;
             isAdmin = false;
         }
+
+        public void setUserFromObj(User user)
+        {
+            firstname = user.firstname;
+            lastname = user.lastname;
+            email = user.lastname;
+            username = user.lastname;
+            password = user.password;
+            emailConfirmed = user.emailConfirmed;
+            isAdmin = user.isAdmin;
+            ammountStars = user.ammountStars;
+            ammountLections = user.ammountLections;
+        }
+
     }
 }

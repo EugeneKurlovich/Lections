@@ -1,7 +1,70 @@
-﻿
+﻿@model User
 @{
     ViewData["Title"] = "EditUser";
 }
 
-<h2>EditUser</h2>
+<html>
+
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<body style="background-color:black">
+    <div style="display:inline-table; color:white; background-color: black">
+        <h1 style="color:white">User Profile </h1>
+        <form method="post">
+            <table class="table table-user-information">
+                <tbody>
+                    <tr>
+                        <td>Firstname</td>
+                        <td><input type="text" name="firstname" class="form-control" value="@Model.firstname" autofocus required> </td>
+                    </tr>
+                    <tr>
+                        <td>Lastname</td>
+                        <td> <input type="text" name="lastname" class="form-control" value="@Model.lastname" autofocus required></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td> <input type="email" name="email" class="form-control" value="@Model.email" autofocus required></td>
+                    </tr>
+                    <tr>
+                        <td>Username</td>
+                        <td> <input type="text" name="username" class="form-control" value="@Model.username" autofocus required></td>
+                    </tr>
+                    <tr>
+                        <td>Pasword</td>
+                        <td> <input type="password" name="password" class="form-control" value="@Model.password" autofocus required></td>
+                    </tr>
+                    <tr>
+                        <td>Stars</td>
+                        <td><input type="number" name="ammountStars" class="form-control" value="@Model.ammountStars" autofocus required> </td>
+                    </tr>
+                    <tr>
+                        <td>Lections</td>
+                        <td><input type="number" name="ammountLections" class="form-control" value="@Model.ammountLections" autofocus required> </td>
+                    </tr>
+                    <tr>
+                        <td>Admin</td>
+                        @if (@Model.isAdmin)
+        {
+                <td>Yes</td>
+}
+else
+{
+                <td>No</td>
+}
+                    </tr>
+                </tbody>
+            </table>
+            <input asp-controller="Admin" asp-action="SaveEdit" type="submit" value="Save Changes" class="btn btn-lg btn-success btn-block">
+        </form>
+    </div>
+</body>
+
+</html>
+
+
+
 

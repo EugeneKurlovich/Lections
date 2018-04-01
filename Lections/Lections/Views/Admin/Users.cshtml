@@ -14,38 +14,40 @@
 <body style="background-color:black">
     <div class="well">
         <table class="table">
-            <tr><td>Username</td><td>Firstname</td><td>Lastname</td><td>Email</td><td>Password</td><td>Stars</td><td>Lections</td><td>Admin</td><td>ConfirmedEmail</td></tr>
+            <tr><td>Username</td><td>Firstname</td><td>Lastname</td><td>Email</td><td>Password</td><td>Stars</td><td>Lections</td><td>Admin</td><td>ConfirmedEmail</td><td>Edit/Delete</td><td>Admin/!Admin</td></tr>
             @foreach (var item in Model)
             {
-            <tr>
-                <td><a asp-controller="Admin" asp-action="AdminEdit">@item.username </a></td>
-                <td>@item.firstname</td>
-                <td>@item.lastname</td>
-                <td>@item.email</td>
-                <td>@item.password</td>
-                <td>@item.ammountStars</td>
-                <td>@item.ammountLections</td>
-                @if (@item.isAdmin)
-    {
-            <td>Yes</td>
-}
-else
-{
-            <td>No</td>
+                <tr>
+                    <td>@item.username </td>
+                    <td>@item.firstname</td>
+                    <td>@item.lastname</td>
+                    <td>@item.email</td>
+                    <td>@item.password</td>
+                    <td>@item.ammountStars</td>
+                    <td>@item.ammountLections</td>
+                    @if (@item.isAdmin)
+                    {
+                        <td>Yes</td>
+                    }
+                    else
+                    {
+                        <td>No</td>
 
-}
-                @if (@item.emailConfirmed)
-    {
-            <td>Yes</td>
-}
-else
-{
-            <td>No</td>
-}
-            </tr>
+                    }
+                    @if (@item.emailConfirmed)
+                    {
+                        <td>Yes</td>
+                    }
+                    else
+                    {
+                        <td>No</td>
+                    }
+                    <td><a href="~/Admin/AdminEdit/?username=@item.username">Edit</a> <a href="~/Admin/AdminDelete/?username=@item.username">Delete</a></td>
+                    <td><a href="~/Admin/MakeAdmin/?username=@item.username">Admin</a> <a href="~/Admin/DeleteAdmin/?username=@item.username">!Admin</a></td>
+                </tr>
             }
         </table>
-        </div>
+    </div>
 </body>
 </html>
 
