@@ -56,12 +56,6 @@
             </table>
             <input asp-controller="Profile" asp-action="EditUser" type="submit" value="Save Changes" class="btn btn-lg btn-success btn-block">
         </form>
-
-        @if (@Model.isAdmin)
-        {
-            <input asp-controller="Profile" asp-action="" type="submit" value="Manage Users" class="btn btn-lg btn-success btn-block">
-            <input asp-controller="Profile" asp-action="" type="submit" value="Manage Lections" class="btn btn-lg btn-success btn-block">
-        }
     </div>
 </body>
 

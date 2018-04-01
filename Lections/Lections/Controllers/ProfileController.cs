@@ -45,14 +45,20 @@ namespace Lections.Controllers
 
         public IActionResult Index()
         {
-            foreach (User user in db.Users)
+            foreach (User us in db.Users)
             {
-                if (user.username.Equals(User.Identity.Name))
+                if (us.username.Equals(User.Identity.Name))
                 {
-                    return View(user);
+                    return View(us);
                 }
             }
-            return RedirectToAction("Index", "Home");
+
+            User user = new User();
+            user.username = User.Identity.Name;
+            db.Users.Add(user);
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Profile");
         }
 
         [HttpPost]
