@@ -34,20 +34,49 @@ namespace Lections.Controllers
             return View("AllLections");           
         }
 
+        public IActionResult UpdateLection([FromForm] Lection l)
+        {
+            foreach(Lection lection in db.Lections)
+            {
+                if(lection.name.Equals(l.name))
+                {
+                    lection.smallDescription = l.smallDescription;
+                    lection.text = l.text;
+                }
+            }
+            db.SaveChanges();
+            return View("AllLections", db.Lections);
+        }
+
         public IActionResult AllLections()
         {
             var lect = (from i in db.Lections where i.User.username.Equals(User.Identity.Name) select i).ToList();
             return View(lect);
         }
 
-        public IActionResult LectionEdit()
+        public IActionResult LectionEdit(string name)
         {
-            return View("EditLection");
+            foreach(Lection l in db.Lections)
+            {
+                if (l.name.Equals(name))
+                {
+                    return View("EditLection",l);
+                }
+            }
+            return View("AllLections",db.Lections);
         }
 
-        public IActionResult LectionDelete()
+        public IActionResult LectionDelete(string name)
         {
-            return View("DeleteLection");
+            foreach (Lection lection in db.Lections)
+            {
+                if (lection.name.Equals(name))
+                {
+                    db.Lections.Remove(lection);
+                }
+            }
+            db.SaveChanges();
+            return View("AllLections", db.Lections);
         }
 
         public IActionResult SaveLection([FromForm] Lection lection)

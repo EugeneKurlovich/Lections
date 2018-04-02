@@ -1,0 +1,31 @@
+﻿@model Lection
+@{
+    ViewData["Title"] = "EditLection";
+}
+
+<html>
+<head>
+    <h2 style="color:white">Edit Lection</h2>
+</head>
+<body style="background-color:black">
+    <div style="display:inline-table">
+        <form method="post">
+            <label style="color:white"> Lection name:</label>
+            <br />
+            <input type="text" name="name" value="@Model.name">
+            <br />
+            <br />
+            <label style="color:white"> Input small description</label>
+            <br />
+            <textarea name="smallDescription" rows="10" cols="100"> @Model.smallDescription </textarea>
+            <br />
+            <label style="color:white"> Input lection text</label>
+            <br />
+            <textarea name="text" rows="20" cols="100"> @Model.text </textarea>
+            <br />
+            <br />
+            <input asp-controller="Lections" asp-action="UpdateLection" type="submit" value="Save Changes" class="btn btn-lg btn-success btn-block">
+        </form>
+    </div>
+</body> 
+</html>
