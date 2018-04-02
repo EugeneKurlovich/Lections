@@ -22,9 +22,32 @@ namespace Lections.Controllers
             return View();
         }
 
+        public IActionResult ShowText(string name)
+        {
+            foreach (Lection lect in db.Lections)
+            {
+                if (lect.name.Equals(name))
+                {
+                    return View("ShowLection", lect);
+                }
+            }
+            return View("AllLections");           
+        }
+
         public IActionResult AllLections()
         {
-            return View();
+            var lect = (from i in db.Lections where i.User.username.Equals(User.Identity.Name) select i).ToList();
+            return View(lect);
+        }
+
+        public IActionResult LectionEdit()
+        {
+            return View("EditLection");
+        }
+
+        public IActionResult LectionDelete()
+        {
+            return View("DeleteLection");
         }
 
         public IActionResult SaveLection([FromForm] Lection lection)
@@ -34,7 +57,7 @@ namespace Lections.Controllers
             {
                 lection.UserId = usId;
             }
-            
+
             db.Lections.Add(lection);
             db.SaveChanges();
             return View("AllLections");

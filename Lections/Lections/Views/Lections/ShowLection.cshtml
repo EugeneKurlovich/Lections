@@ -1,0 +1,26 @@
+﻿@model Lection
+@{
+    ViewData["Title"] = "Lection";
+}
+
+
+<body style="background-color:black">
+    <div>
+        <h1 style="color:white">Lection: @Model.name</h1>
+        <h2 style="color:white">Stars: @Model.stars</h2>
+    </div>
+    <br />
+    <br />
+    <div style="color:white">
+        <h1>Small description</h1>
+        <br />
+        @Model.smallDescription
+
+        <br />
+        <h1>Text</h1>
+        <br />
+        @Model.text
+
+    </div>
+</body>
+

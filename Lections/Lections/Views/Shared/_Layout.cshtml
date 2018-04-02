@@ -26,7 +26,7 @@
             <div class="navbar-collapse collapse">
                 @if (User.Identity.IsAuthenticated)
     {
-            <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"> My Lections</a>
+            <a asp-area="" asp-controller="Lections" asp-action="AllLections" class="navbar-brand"> My Lections</a>
             <a asp-area="" asp-controller="Profile" asp-action="checkAdminU" class="navbar-brand"> Manage Users</a>
             <a asp-area="" asp-controller="Profile" asp-action="checkAdminL" class="navbar-brand"> Manage Lections</a>
             <a asp-area="" asp-controller="Lections" asp-action="CreateLection" class="navbar-brand"> Create Lection</a>

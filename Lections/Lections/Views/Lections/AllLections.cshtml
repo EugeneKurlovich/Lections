@@ -1,7 +1,30 @@
-﻿
+﻿@model IEnumerable<Lection>
 @{
     ViewData["Title"] = "AllLections";
 }
+<html>
 
-<h2>AllLections</h2>
+<head>
+    <h2 style="color:white">My Lections</h2>
+</head>
 
+<body style="background-color:black">
+    <div class="well">
+        <table class="table">
+            <tr><td>Name</td><td>Small description</td><td>Stars</td><td>Text</td><td>Edit/Delete</td></tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.name </td>
+                    <td>@item.smallDescription</td>
+                    <td>@item.stars</td>
+                     <td><a href="~/Lections/ShowText/?name=@item.name">Show</a></td>
+                    <td><a href="~/Lections/LectionEdit/?name=@item.name">Edit</a> <a href="~/Admin/LectionDelete/?name=@item.name">Delete</a></td>
+                </tr>
+            }
+        </table>
+    </div>
+
+</body>
+
+</html>
