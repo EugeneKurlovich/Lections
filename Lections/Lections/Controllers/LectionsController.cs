@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Lections.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lections.Controllers
 {
     public class LectionsController : Controller
     {
-        public IActionResult Index()
+
+        private static DatabaseContext db;
+
+        public LectionsController(DatabaseContext context)
         {
-            return View();
+            db = context;
         }
 
         public IActionResult CreateLection()
@@ -21,6 +25,19 @@ namespace Lections.Controllers
         public IActionResult AllLections()
         {
             return View();
+        }
+
+        public IActionResult SaveLection([FromForm] Lection lection)
+        {
+            var id = from i in db.Users where User.Identity.Name.Equals(i.username) select i.Id;
+            foreach (int usId in id)
+            {
+                lection.UserId = usId;
+            }
+            
+            db.Lections.Add(lection);
+            db.SaveChanges();
+            return View("AllLections");
         }
     }
 }
