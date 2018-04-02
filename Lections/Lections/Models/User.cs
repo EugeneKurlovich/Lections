@@ -18,6 +18,8 @@ namespace Lections.Models
         public int ammountStars { get; set; }
         public int ammountLections { get; set; }
 
+        public List<Lection> Lections  { get; set; }
+
         public User()
         {
             emailConfirmed = false;

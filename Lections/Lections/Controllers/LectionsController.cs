@@ -12,5 +12,15 @@ namespace Lections.Controllers
         {
             return View();
         }
+
+        public IActionResult CreateLection()
+        {
+            return View();
+        }
+
+        public IActionResult AllLections()
+        {
+            return View();
+        }
     }
 }

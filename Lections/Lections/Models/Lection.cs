@@ -12,6 +12,9 @@ namespace Lections.Models
         public string smallDescription { set; get; }
         public string text { set; get; }
         public int stars { set; get; }
-        public int userId { set; get; }
+        public int UserId { set; get; }
+
+        public User User { get; set; }
+
     }
 }
