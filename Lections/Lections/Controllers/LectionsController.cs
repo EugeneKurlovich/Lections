@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Lections.Models;
+using Lections.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lections.Controllers
 {
     public class LectionsController : Controller
     {
-
-        private static DatabaseContext db;
+        UserService uS;
+        LectionService lS;
 
         public LectionsController(DatabaseContext context)
         {
-            db = context;
+            uS = new UserService(context);
+            lS = new LectionService(context);
         }
 
         public IActionResult CreateLection()
@@ -24,72 +26,53 @@ namespace Lections.Controllers
 
         public IActionResult ShowText(string name)
         {
-            foreach (Lection lect in db.Lections)
-            {
-                if (lect.name.Equals(name))
-                {
-                    return View("ShowLection", lect);
-                }
-            }
-            return View("AllLections");           
+            return View("ShowLection", lS.getLectionByName(name));
+
         }
 
         public IActionResult UpdateLection([FromForm] Lection l)
         {
-            foreach(Lection lection in db.Lections)
-            {
-                if(lection.name.Equals(l.name))
-                {
-                    lection.smallDescription = l.smallDescription;
-                    lection.text = l.text;
-                }
-            }
-            db.SaveChanges();
-            return View("AllLections", db.Lections);
+            Lection lection = lS.getLectionByName(l.name);
+
+            lection.smallDescription = l.smallDescription;
+            lection.text = l.text;
+            lS.updateUserLection(lection);
+            lS.Save();
+            return View("AllLections", lS.getAllLections());
         }
 
         public IActionResult AllLections()
         {
-            var lect = (from i in db.Lections where i.User.username.Equals(User.Identity.Name) select i).ToList();
-            return View(lect);
+            return View(lS.getLectionsByUser(uS.getUserIdByName(User.Identity.Name)));
         }
 
         public IActionResult LectionEdit(string name)
         {
-            foreach(Lection l in db.Lections)
-            {
-                if (l.name.Equals(name))
-                {
-                    return View("EditLection",l);
-                }
-            }
-            return View("AllLections",db.Lections);
+            return View("EditLection", lS.getLectionByName(name));
         }
 
         public IActionResult LectionDelete(string name)
         {
-            foreach (Lection lection in db.Lections)
-            {
-                if (lection.name.Equals(name))
-                {
-                    db.Lections.Remove(lection);
-                }
-            }
-            db.SaveChanges();
-            return View("AllLections", db.Lections);
+            lS.deleteUserLection(lS.getLectionByName(name));
+            lS.Save();
+            return View("AllLections", lS.getAllLections());
         }
 
         public IActionResult SaveLection([FromForm] Lection lection)
-        {
-            var id = from i in db.Users where User.Identity.Name.Equals(i.username) select i.Id;
-            foreach (int usId in id)
+        {            
+            if(lS.checkExistLectionName(lection.name))
             {
-                lection.UserId = usId;
+                lection.UserId = uS.getUserIdByName(User.Identity.Name);
+                lS.createUserLection(lection);
+                lS.Save();
+                return View("AllLections", lS.getAllLections());
             }
-
-            db.Lections.Add(lection);
-            db.SaveChanges();
-            return View("AllLections",db.Lections);
+            else
+            {
+                ViewBag.message = "Lection name exist";
+                return View("CreateLection");
+            }
+            
         }
     }
 }

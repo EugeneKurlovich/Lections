@@ -54,6 +54,18 @@ namespace Lections.Services
 
         }
 
+        public int getUserIdByName(string username)
+        {
+            foreach(User i in getAllUsers())
+            {
+                if(i.username.Equals(username))
+                {
+                    return i.Id;
+                }
+            }
+            return 0;
+        }
+
         public bool checkExist(string username, string email)
         {
             if (Array.Exists(unitOfWork.Users.GetAll().ToArray(), eU => eU.username.Equals(username)
