@@ -14,7 +14,10 @@ namespace Lections.Models
         {
 
         }
+        public DatabaseContext()
+        {
 
-       
+        }
+
     }
 }

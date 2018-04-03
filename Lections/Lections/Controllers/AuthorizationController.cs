@@ -18,11 +18,13 @@ namespace Lections.Controllers
         private readonly IAuthenticationSchemeProvider asp;
         private static DatabaseContext db;
         static string log;
+        UnitOfWork unitOfWork;
 
         public AuthorizationController(IAuthenticationSchemeProvider a, DatabaseContext context)
         {
             asp = a;
             db = context;
+            unitOfWork = new UnitOfWork();
         }
 
         public IActionResult Index()
