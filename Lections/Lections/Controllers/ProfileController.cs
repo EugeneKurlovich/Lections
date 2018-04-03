@@ -26,7 +26,6 @@ namespace Lections.Controllers
                 return RedirectToAction("Index", "Home"); 
         }
 
-
         public IActionResult checkAdminU()
         {
             if (uS.isAdmin(User.Identity.Name))
@@ -48,18 +47,6 @@ namespace Lections.Controllers
                 uS.Save();
                 return RedirectToAction("Index", "Profile");
             }
-            //foreach (User us in db.Users)
-            //{
-            //    if (us.username.Equals(User.Identity.Name))
-            //    {
-            //        return View(us);
-            //    }
-            //}
-
-            //User user = new User();
-            //user.username = User.Identity.Name;
-            //db.Users.Add(user);
-            //db.SaveChanges(); 
         }
 
         [HttpPost]
@@ -74,17 +61,6 @@ namespace Lections.Controllers
             uS.updateProfile(us);
             uS.Save();
             return RedirectToAction("Index", "Profile");
-            //foreach(User i in db.Users)
-            //{
-            //    if (i.username.Equals(User.Identity.Name))
-            //    { 
-            //        i.firstname = user.firstname;
-            //        i.lastname = user.lastname;
-            //        i.email = user.email;
-            //    }
-            //}
-            //db.SaveChanges();
-            //return RedirectToAction("Index", "Profile");
         }
     }
 }
