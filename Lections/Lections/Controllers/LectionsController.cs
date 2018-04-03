@@ -89,7 +89,7 @@ namespace Lections.Controllers
 
             db.Lections.Add(lection);
             db.SaveChanges();
-            return View("AllLections");
+            return View("AllLections",db.Lections);
         }
     }
 }
