@@ -26,6 +26,12 @@ namespace Lections.Models
             isAdmin = false;
         }
 
+        public User(string username)
+        {
+            this.username = username;
+            isAdmin = false;
+        }
+
         public void setUserFromObj(User user)
         {
             firstname = user.firstname;

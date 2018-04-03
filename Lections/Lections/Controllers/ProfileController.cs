@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Lections.Models;
+using Lections.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,55 +11,55 @@ namespace Lections.Controllers
 {
     public class ProfileController : Controller
     {
-
-        private static DatabaseContext db;
+        UserService uS;
 
         public ProfileController(DatabaseContext context)
         {
-            db = context;
+            uS = new UserService(context);
         }
 
         public IActionResult checkAdminL()
         {
-            foreach (User user in db.Users)
-            {
-                if (user.username.Equals(User.Identity.Name) && user.isAdmin)
-                {
+                if (uS.isAdmin(User.Identity.Name))
                     return RedirectToAction("Lections", "Admin");
-                }
-            }
-            return RedirectToAction("Index", "Home");
+                else
+                return RedirectToAction("Index", "Home"); 
         }
 
 
         public IActionResult checkAdminU()
         {
-            foreach (User user in db.Users)
-            {
-                if (user.username.Equals(User.Identity.Name) && user.isAdmin)
-                {
-                    return RedirectToAction("Users", "Admin");
-                }
-            }
-            return RedirectToAction("Index", "Home");
+            if (uS.isAdmin(User.Identity.Name))
+                return RedirectToAction("Users", "Admin");
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Index()
         {
-            foreach (User us in db.Users)
+            if(!uS.checkExist(User.Identity.Name, "null"))
             {
-                if (us.username.Equals(User.Identity.Name))
-                {
-                    return View(us);
-                }
+                return View(uS.getUserbyName(User.Identity.Name));
             }
+            else
+            {
+                User user = new User(User.Identity.Name);
+                uS.createUser(user);
+                uS.Save();
+                return RedirectToAction("Index", "Profile");
+            }
+            //foreach (User us in db.Users)
+            //{
+            //    if (us.username.Equals(User.Identity.Name))
+            //    {
+            //        return View(us);
+            //    }
+            //}
 
-            User user = new User();
-            user.username = User.Identity.Name;
-            db.Users.Add(user);
-            db.SaveChanges();
-
-            return RedirectToAction("Index", "Profile");
+            //User user = new User();
+            //user.username = User.Identity.Name;
+            //db.Users.Add(user);
+            //db.SaveChanges(); 
         }
 
         [HttpPost]
@@ -66,17 +67,24 @@ namespace Lections.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult EditUser([FromForm] User user)
         {
-            foreach(User i in db.Users)
-            {
-                if (i.username.Equals(User.Identity.Name))
-                { 
-                    i.firstname = user.firstname;
-                    i.lastname = user.lastname;
-                    i.email = user.email;
-                }
-            }
-            db.SaveChanges();
+           User us = uS.getUserbyName(User.Identity.Name);
+            us.firstname = user.firstname;
+            us.lastname = user.lastname;
+            us.email = user.email;
+            uS.updateProfile(us);
+            uS.Save();
             return RedirectToAction("Index", "Profile");
+            //foreach(User i in db.Users)
+            //{
+            //    if (i.username.Equals(User.Identity.Name))
+            //    { 
+            //        i.firstname = user.firstname;
+            //        i.lastname = user.lastname;
+            //        i.email = user.email;
+            //    }
+            //}
+            //db.SaveChanges();
+            //return RedirectToAction("Index", "Profile");
         }
     }
 }

@@ -19,7 +19,6 @@ namespace Lections.Controllers
         private readonly IAuthenticationSchemeProvider asp;
         static string log;
         UserService uS;
-        DatabaseContext db;
 
         public AuthorizationController(IAuthenticationSchemeProvider a, DatabaseContext context)
         {

@@ -17,6 +17,21 @@ namespace Lections.Services
             unitOfWork = new UnitOfWork(context);
         }
 
+        public void updateProfile(User u)
+        {
+            unitOfWork.Users.Update(u);
+        }
+
+        public User getUserbyName(string uName)
+        {
+            foreach(User u in unitOfWork.Users.GetAll())
+            {
+                if (u.username.Equals(uName))
+                    return u;
+            }
+            return null;
+        }
+
         public bool checkExist(string username, string email)
         {
             if (Array.Exists(unitOfWork.Users.GetAll().ToArray(), eU => eU.username.Equals(username)
@@ -40,6 +55,18 @@ namespace Lections.Services
             {
                 user.emailConfirmed = true;
             }
+        }
+
+        public bool isAdmin(string username)
+        {
+            foreach (User user in unitOfWork.Users.GetAll())
+            {
+                if (user.username.Equals(username) && user.isAdmin)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public bool checkRegisteredUser(string log, string pass)
