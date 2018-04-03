@@ -1,7 +1,40 @@
-﻿
+﻿@model IEnumerable<Lection>
 @{
     ViewData["Title"] = "Lections";
 }
 
-<h2>Lections</h2>
+<html>
+
+<head>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <h2 style="color:white"> Users Lections</h2>
+</head>
+
+<body style="background-color:black">
+    <div class="well">
+        <table class="table">
+            <tr><td>Name</td><td>Description</td><td>text</td><td>Stars</td><td>Create</td><td>Update</td><td>Creater</td><td>Edit/Delete</td></tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.name </td>
+                    <td>@item.smallDescription</td>
+                    <td>@item.text</td>
+                    <td>@item.stars</td>
+                    <td>@item.dateCreate</td>
+                    <td>@item.dateUpdate</td>
+                    <td>                 
+                    @item.UserId
+                    </td>
+                   
+                    <td><a href="~/Admin/AdminEditLection/?name=@item.name">Edit</a> <a href="~/Admin/AdminDeleteLection/?name=@item.name">Delete</a></td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>
+
 

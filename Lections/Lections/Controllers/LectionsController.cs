@@ -36,6 +36,7 @@ namespace Lections.Controllers
 
             lection.smallDescription = l.smallDescription;
             lection.text = l.text;
+            lection.dateUpdate = DateTime.Now;
             lS.updateUserLection(lection);
             lS.Save();
             return View("AllLections", lS.getAllLections());
@@ -54,7 +55,11 @@ namespace Lections.Controllers
         public IActionResult LectionDelete(string name)
         {
             lS.deleteUserLection(lS.getLectionByName(name));
+            User user = uS.getUserbyName(User.Identity.Name);
             lS.Save();
+            user.ammountLections--;
+            uS.minusLection(user);
+            uS.Save();
             return View("AllLections", lS.getAllLections());
         }
 
@@ -63,8 +68,14 @@ namespace Lections.Controllers
             if(lS.checkExistLectionName(lection.name))
             {
                 lection.UserId = uS.getUserIdByName(User.Identity.Name);
+                lection.dateCreate = DateTime.Now;
+                lection.dateUpdate = DateTime.Now;
                 lS.createUserLection(lection);
                 lS.Save();
+                User user = uS.getUserbyName(User.Identity.Name);
+                user.ammountLections++;
+                uS.plusLection(user);
+                uS.Save();
                 return View("AllLections", lS.getAllLections());
             }
             else

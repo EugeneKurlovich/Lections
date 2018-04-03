@@ -11,16 +11,19 @@
 <body style="background-color:black">
     <div class="well">
         <table class="table">
-            <tr><td>Name</td><td>Small description</td><td>Stars</td><td>Text</td><td>Edit/Delete</td></tr>
+            <tr><td>Name</td><td>Small description</td><td>Stars</td><td>Text</td><td>Create</td> <td>Update</td> <td>Edit/Delete</td></tr>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>@item.name </td>
-                    <td>@item.smallDescription</td>
-                    <td>@item.stars</td>
-                     <td><a href="~/Lections/ShowText/?name=@item.name">Show</a></td>
-                    <td><a href="~/Lections/LectionEdit/?name=@item.name">Edit</a> <a href="~/Lections/LectionDelete/?name=@item.name">Delete</a></td>
-                </tr>
+            <tr>
+                <td>@item.name </td>
+                <td>@item.smallDescription</td>
+                <td>@item.stars</td>
+                <td><a href="~/Lections/ShowText/?name=@item.name">Show</a></td>
+                <td>@item.dateCreate</td>
+                <td>@item.dateUpdate</td>
+
+                <td><a href="~/Lections/LectionEdit/?name=@item.name">Edit</a> <a href="~/Lections/LectionDelete/?name=@item.name">Delete</a></td>
+            </tr>
             }
         </table>
     </div>

@@ -13,10 +13,12 @@ namespace Lections.Controllers
     {
         private static DatabaseContext db;
         UserService uS;
+        LectionService lS;
 
         public AdminController(DatabaseContext context)
         {
             uS = new UserService(context);
+            lS = new LectionService(context);
         }
 
         public IActionResult Users()
@@ -26,8 +28,7 @@ namespace Lections.Controllers
 
         public IActionResult Lections(string username)
         {
-
-            return View();
+            return View(lS.getAllLections());
         }
 
         public IActionResult MakeAdmin(string username)
@@ -67,6 +68,34 @@ namespace Lections.Controllers
         {
             return View("EditUser", uS.getUserbyName(username));
 
+        }
+
+        public IActionResult AdminEditLection(string name)
+        {
+            return View("EditLection", lS.getLectionByName(name));
+        }
+
+        public IActionResult SaveEditLection([FromForm] Lection l)
+        {
+            Lection lection = lS.getLectionByName(l.name);
+            lection.smallDescription = l.smallDescription;
+            lection.text = l.text;
+            lection.dateUpdate = DateTime.Now;
+            lS.updateUserLection(lection);
+            lS.Save();
+            return View("Lections", lS.getAllLections());
+        }
+
+        public IActionResult AdminDeleteLection(string name)
+        {
+            Lection lection = lS.getLectionByName(name);
+            User user = uS.getUserById(lection.UserId);
+            user.ammountLections--;
+            uS.updateProfile(user);
+            uS.Save();
+            lS.deleteUserLection(lS.getLectionByName(name));        
+            lS.Save();
+            return View("Lections", lS.getAllLections());
         }
 
         public IActionResult AdminDelete(string username)

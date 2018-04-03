@@ -27,9 +27,29 @@ namespace Lections.Services
             unitOfWork.Users.Update(u);
         }
 
+        public void getUserNameById(int id)
+        {
+            unitOfWork.Users.Get(id);
+        }
+
+        public void plusLection(User u)
+        {
+            unitOfWork.Users.Update(u);
+        }
+
+        public void minusLection(User u)
+        {
+            unitOfWork.Users.Update(u);
+        }
+
         public void deleteProfile(User u)
         {
             unitOfWork.Users.Delete(u.Id);
+        }
+
+        public User getUserById(int id)
+        {
+            return unitOfWork.Users.Get(id);
         }
 
         public User getUserbyName(string uName)
