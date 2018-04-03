@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Lections.Models;
+using Lections.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,91 +12,67 @@ namespace Lections.Controllers
     public class AdminController : Controller
     {
         private static DatabaseContext db;
+        UserService uS;
 
         public AdminController(DatabaseContext context)
         {
-            db = context;
+            uS = new UserService(context);
         }
 
         public IActionResult Users()
         {
-            return View(db.Users);
+            return View(uS.getAllUsers());
         }
 
         public IActionResult Lections(string username)
-        { 
-          
+        {
+
             return View();
         }
 
         public IActionResult MakeAdmin(string username)
         {
-            foreach (User user in db.Users)
-            {
-                if (user.username.Equals(username))
-                {
-                    user.isAdmin = true;
-                }
-            }
-            db.SaveChanges();
+            uS.makeAdm(uS.getUserbyName(username));
+            uS.Save();
             return RedirectToAction("Users", "Admin");
         }
 
         public IActionResult DeleteAdmin(string username)
         {
-            foreach (User user in db.Users)
-            {
-                if (user.username.Equals(username))
-                {
-                    user.isAdmin = false;
-                }
-            }
-            db.SaveChanges();
+            uS.delAdm(uS.getUserbyName(username));
+            uS.Save();
             return RedirectToAction("Users", "Admin");
         }
 
         [HttpPost]
         public IActionResult SaveEdit([FromForm]User user)
         {
-            foreach(User u in db.Users)
-            {
-                if (u.username.Equals(user.username))
-                {
-                    u.firstname = user.firstname;
-                    u.lastname = user.lastname;
-                    u.email = user.email;
-                    u.password = user.password;
-                    u.ammountStars = user.ammountStars;
-                    u.ammountLections = user.ammountLections;
-                }
-            }
-            db.SaveChanges();
+            User u = uS.getUserbyName(user.username);
+
+            u.firstname = user.firstname;
+            u.lastname = user.lastname;
+            u.email = user.email;
+            u.password = user.password;
+            u.ammountStars = user.ammountStars;
+            u.ammountLections = user.ammountLections;
+
+            uS.updateAllProfile(u);
+            uS.Save();
+
             return RedirectToAction("Users", "Admin");
         }
 
         [HttpGet]
         public IActionResult AdminEdit(string username)
         {
-            foreach(User user in db.Users)
-            {
-                if(user.username.Equals(username))
-                {
-                    return View("EditUser", user);
-                }
-            }
-            return View("EditUser");
+            return View("EditUser", uS.getUserbyName(username));
+
         }
 
         public IActionResult AdminDelete(string username)
         {
-            foreach (User user in db.Users)
-            {
-                if (user.username.Equals(username))
-                {
-                    db.Users.Remove(user);
-                }
-            }
-            db.SaveChanges();
+            uS.deleteProfile(uS.getUserbyName(username));
+            uS.Save();
             return RedirectToAction("Users", "Admin");
         }
 

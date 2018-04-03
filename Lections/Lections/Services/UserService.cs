@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lections.Services
 {
-    public class UserService 
+    public class UserService
     {
         UnitOfWork unitOfWork;
 
@@ -17,19 +17,41 @@ namespace Lections.Services
             unitOfWork = new UnitOfWork(context);
         }
 
+        public void updateAllProfile(User u)
+        {
+            unitOfWork.Users.Update(u);
+        }
+
         public void updateProfile(User u)
         {
             unitOfWork.Users.Update(u);
         }
 
+        public void deleteProfile(User u)
+        {
+            unitOfWork.Users.Delete(u.Id);
+        }
+
         public User getUserbyName(string uName)
         {
-            foreach(User u in unitOfWork.Users.GetAll())
+            foreach (User u in unitOfWork.Users.GetAll())
             {
                 if (u.username.Equals(uName))
                     return u;
             }
             return null;
+        }
+
+        public void delAdm(User user)
+        {
+            user.isAdmin = false;
+        }
+
+        public void makeAdm(User user)
+        {
+
+            user.isAdmin = true;
+
         }
 
         public bool checkExist(string username, string email)
@@ -39,7 +61,7 @@ namespace Lections.Services
                 return false;
             else
                 return true;
-        }   
+        }
 
         public IEnumerable<User> getAllUsers()
         {
