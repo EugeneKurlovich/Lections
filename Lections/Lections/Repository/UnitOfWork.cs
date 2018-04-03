@@ -4,13 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Lections.Services
+namespace Lections.Repository
 {
     public class UnitOfWork : IDisposable
     {
-        private DatabaseContext db = new DatabaseContext();
+        public DatabaseContext db = new DatabaseContext();
         private UserRepository userRepository;
         private LectionRepository lectionRepository;
+
+        public UnitOfWork(DatabaseContext context)
+        {
+            db = context;
+        }
 
         public UserRepository Users
         {

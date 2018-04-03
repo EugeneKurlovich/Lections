@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Lections.Services
+namespace Lections.Repository
 {
     public class UserRepository : IRepository<User>
     {
