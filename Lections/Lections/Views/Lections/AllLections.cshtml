@@ -11,7 +11,28 @@
 <body style="background-color:black">
     <div class="well">
         <table class="table">
-            <tr><td>Name</td><td>Small description</td><td>Stars</td><td>Text</td><td>Create</td> <td>Update</td> <td>Edit/Delete</td></tr>
+            <tr>
+                <td>
+                    Name
+                    <br /> <a asp-action="nameAsc" asp-controller="Lections"> Asc </a> <a asp-action="nameDsc" asp-controller="Lections"> Desc </a>
+                </td>
+                <td>Small description</td>
+                <td>
+                    Stars
+                    <br /> <a asp-action="starsAsc" asp-controller="Lections"> Asc </a> <a asp-action="starsDsc" asp-controller="Lections"> Desc </a>
+                </td>
+                <td>Text</td>
+                <td>
+                    Create
+                    <br /> <a asp-action="cDateAsc" asp-controller="Lections"> Asc </a> <a asp-action="cDateDsc" asp-controller="Lections"> Desc </a>
+                </td>
+                <td>
+                    Update
+                    <br /> <a asp-action="uDateAsc" asp-controller="Lections"> Asc </a> <a asp-action="uDateDsc" asp-controller="Lections"> Desc </a>
+                </td>
+                <td>Creater</td>
+                <td>Edit/Delete</td>
+            </tr>
             @foreach (var item in Model)
             {
             <tr>
@@ -21,7 +42,7 @@
                 <td><a href="~/Lections/ShowText/?name=@item.name">Show</a></td>
                 <td>@item.dateCreate</td>
                 <td>@item.dateUpdate</td>
-
+                <td>@item.UserId</td>
                 <td><a href="~/Lections/LectionEdit/?name=@item.name">Edit</a> <a href="~/Lections/LectionDelete/?name=@item.name">Delete</a></td>
             </tr>
             }

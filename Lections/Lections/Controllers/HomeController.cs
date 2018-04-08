@@ -25,12 +25,6 @@ namespace Lections.Controllers
             return View("Index", lections);
         }
 
-        public IActionResult filterAuthor(string filter)
-        {
-            var lections = (from l in lS.getAllLections() where l.User.username.Contains(filter) select l).ToList();
-            return View("Index", lections);
-        }
-
         public IActionResult nameAsc()
         {
             return View("Index", lS.getAllLections().OrderBy(n => n.name));

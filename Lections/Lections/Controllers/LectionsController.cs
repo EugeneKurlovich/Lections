@@ -21,6 +21,46 @@ namespace Lections.Controllers
             lkS = new LikeService(context);
         }
 
+        public IActionResult nameAsc()
+        {
+            return View("AllLections", lS.getLectionsByUser(uS.getUserIdByName(User.Identity.Name)).OrderBy(n => n.name));
+        }
+
+        public IActionResult nameDsc()
+        {
+            return View("AllLections", lS.getLectionsByUser(uS.getUserIdByName(User.Identity.Name)).OrderByDescending(n => n.name));
+        }
+
+        public IActionResult starsAsc()
+        {
+            return View("AllLections", lS.getLectionsByUser(uS.getUserIdByName(User.Identity.Name)).OrderBy(n => n.stars));
+        }
+
+        public IActionResult starsDsc()
+        {
+            return View("AllLections", lS.getLectionsByUser(uS.getUserIdByName(User.Identity.Name)).OrderByDescending(n => n.stars));
+        }
+
+        public IActionResult cDateAsc()
+        {
+            return View("AllLections", lS.getLectionsByUser(uS.getUserIdByName(User.Identity.Name)).OrderBy(n => n.dateCreate));
+        }
+
+        public IActionResult cDateDsc()
+        {
+            return View("AllLections", lS.getLectionsByUser(uS.getUserIdByName(User.Identity.Name)).OrderByDescending(n => n.dateCreate));
+        }
+
+        public IActionResult uDateAsc()
+        {
+            return View("AllLections", lS.getLectionsByUser(uS.getUserIdByName(User.Identity.Name)).OrderBy(n => n.dateUpdate));
+        }
+
+        public IActionResult uDateDsc()
+        {
+            return View("AllLections", lS.getLectionsByUser(uS.getUserIdByName(User.Identity.Name)).OrderByDescending(n => n.dateUpdate));
+        }
+
         public IActionResult CreateLection()
         {
             return View();

@@ -16,24 +16,47 @@
 <body style="background-color:black">
     <div class="well">
         <table class="table">
-
-            <tr><td>Name</td><td>Description</td><td>text</td><td>Stars</td><td>Create</td><td>Update</td><td>Creater</td><td>Edit/Delete</td></tr>
+            <tr>
+                <td>
+                    Name
+                    <br /> <a asp-action="nameAsc" asp-controller="Admin"> Asc </a> <a asp-action="nameDsc" asp-controller="Admin"> Desc </a>
+                </td>
+                <td>Small description</td>
+                <td>
+                    Stars
+                    <br /> <a asp-action="starsAsc" asp-controller="Admin"> Asc </a> <a asp-action="starsDsc" asp-controller="Admin"> Desc </a>
+                </td>
+                <td>Text</td>
+                <td>
+                    Create
+                    <br /> <a asp-action="cDateAsc" asp-controller="Admin"> Asc </a> <a asp-action="cDateDsc" asp-controller="Admin"> Desc </a>
+                </td>
+                <td>
+                    Update
+                    <br /> <a asp-action="uDateAsc" asp-controller="Admin"> Asc </a> <a asp-action="uDateDsc" asp-controller="Admin"> Desc </a>
+                </td>
+                <td>
+                    Creater
+                    <br /> <a asp-action="idAsc" asp-controller="Admin"> Asc </a> <a asp-action="idDsc" asp-controller="Admin"> Desc </a>
+                </td>
+                <td>Edit/Delete</td>
+            </tr>
             @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.name </td>
-                    <td>@item.smallDescription</td>
-                    <td>@item.text</td>
-                    <td>@item.stars</td>
-                    <td>@item.dateCreate</td>
-                    <td>@item.dateUpdate</td>
-                    <td>
-                        @item.UserId
-                    </td>
+    {
+        <tr>
+            <td>@item.name </td>
+            <td>@item.smallDescription</td>
+            <td>@item.text</td>
+            <td>@item.stars</td>
+            <td>@item.dateCreate</td>
+            <td>@item.dateUpdate</td>
+            <td>
+                @item.UserId
+            </td>
 
-                    <td><a href="~/Admin/AdminEditLection/?name=@item.name">Edit</a> <a href="~/Admin/AdminDeleteLection/?name=@item.name">Delete</a></td>
-                </tr>
-            }
+            <td><a href="~/Admin/AdminEditLection/?name=@item.name">Edit</a> <a href="~/Admin/AdminDeleteLection/?name=@item.name">Delete</a></td>
+        </tr>
+}
         </table>
     </div>
 </body>

@@ -15,6 +15,55 @@ namespace Lections.Controllers
         UserService uS;
         LectionService lS;
 
+        public IActionResult idAsc()
+        {
+            return View("Lections", lS.getAllLections().OrderBy(n => n.UserId));
+        }
+        public IActionResult idDsc()
+        {
+            return View("Lections", lS.getAllLections().OrderBy(n => n.UserId));
+        }
+
+        public IActionResult nameAsc()
+        {
+            return View("Lections", lS.getAllLections().OrderBy(n => n.name));
+        }
+
+        public IActionResult nameDsc()
+        {
+            return View("Lections", lS.getAllLections().OrderByDescending(n => n.name));
+        }
+
+        public IActionResult starsAsc()
+        {
+            return View("Lections", lS.getAllLections().OrderBy(n => n.stars));
+        }
+
+        public IActionResult starsDsc()
+        {
+            return View("Lections", lS.getAllLections().OrderByDescending(n => n.stars));
+        }
+
+        public IActionResult cDateAsc()
+        {
+            return View("Lections", lS.getAllLections().OrderBy(n => n.dateCreate));
+        }
+
+        public IActionResult cDateDsc()
+        {
+            return View("Lections", lS.getAllLections().OrderByDescending(n => n.dateCreate));
+        }
+
+        public IActionResult uDateAsc()
+        {
+            return View("Lections", lS.getAllLections().OrderBy(n => n.dateUpdate));
+        }
+
+        public IActionResult uDateDsc()
+        {
+            return View("Lections", lS.getAllLections().OrderByDescending(n => n.dateUpdate));
+        }
+
         public AdminController(DatabaseContext context)
         {
             uS = new UserService(context);

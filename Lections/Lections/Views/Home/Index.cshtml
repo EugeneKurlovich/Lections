@@ -25,6 +25,7 @@
                 <td>Text</td>
                 <td>Create  <br /> <a asp-action="cDateAsc" asp-controller="Home"> Asc </a> <a asp-action="cDateDsc" asp-controller="Home"> Desc </a></td>
                 <td>Update  <br /> <a asp-action="uDateAsc" asp-controller="Home"> Asc </a> <a asp-action="uDateDsc" asp-controller="Home"> Desc </a></td>
+                <td>Author</td>
             </tr>
             @foreach (var item in Model)
             {
@@ -32,10 +33,10 @@
                     <td>@item.name </td>
                     <td>@item.smallDescription</td>
                     <td>@item.stars</td>
-
                     <td><a href="~/Lections/ShowText/?name=@item.name">Show</a></td>
                     <td>@item.dateCreate</td>
                     <td>@item.dateUpdate</td>
+                    <td>@item.UserId</td>
 
                 </tr>
             }
