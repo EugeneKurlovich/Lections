@@ -19,6 +19,46 @@ namespace Lections.Controllers
             lS = new LectionService(context);
         }
 
+        public IActionResult nameAsc()
+        {
+            return View("Index", lS.getAllLections().OrderBy(n => n.name));
+        }
+
+        public IActionResult nameDsc()
+        {
+            return View("Index", lS.getAllLections().OrderByDescending(n => n.name));
+        }
+
+        public IActionResult starsAsc()
+        {
+            return View("Index", lS.getAllLections().OrderBy(n => n.stars));
+        }
+
+        public IActionResult starsDsc()
+        {
+            return View("Index", lS.getAllLections().OrderByDescending(n => n.stars));
+        }
+
+        public IActionResult cDateAsc()
+        {
+            return View("Index", lS.getAllLections().OrderBy(n => n.dateCreate));
+        }
+
+        public IActionResult cDateDsc()
+        {
+            return View("Index", lS.getAllLections().OrderByDescending(n => n.dateCreate));
+        }
+
+        public IActionResult uDateAsc()
+        {
+            return View("Index", lS.getAllLections().OrderBy(n => n.dateUpdate));
+        }
+
+        public IActionResult uDateDsc()
+        {
+            return View("Index", lS.getAllLections().OrderByDescending(n => n.dateUpdate));
+        }
+
         public IActionResult Index()
         {
             return View(lS.getAllLections());
