@@ -11,7 +11,6 @@ namespace Lections.Controllers
 {
     public class AdminController : Controller
     {
-        private static DatabaseContext db;
         UserService uS;
         LectionService lS;
 
@@ -23,42 +22,34 @@ namespace Lections.Controllers
         {
             return View("Lections", lS.getAllLections().OrderBy(n => n.UserId));
         }
-
         public IActionResult nameAsc()
         {
             return View("Lections", lS.getAllLections().OrderBy(n => n.name));
         }
-
         public IActionResult nameDsc()
         {
             return View("Lections", lS.getAllLections().OrderByDescending(n => n.name));
         }
-
         public IActionResult starsAsc()
         {
             return View("Lections", lS.getAllLections().OrderBy(n => n.stars));
         }
-
         public IActionResult starsDsc()
         {
             return View("Lections", lS.getAllLections().OrderByDescending(n => n.stars));
         }
-
         public IActionResult cDateAsc()
         {
             return View("Lections", lS.getAllLections().OrderBy(n => n.dateCreate));
         }
-
         public IActionResult cDateDsc()
         {
             return View("Lections", lS.getAllLections().OrderByDescending(n => n.dateCreate));
         }
-
         public IActionResult uDateAsc()
         {
             return View("Lections", lS.getAllLections().OrderBy(n => n.dateUpdate));
         }
-
         public IActionResult uDateDsc()
         {
             return View("Lections", lS.getAllLections().OrderByDescending(n => n.dateUpdate));
@@ -69,6 +60,48 @@ namespace Lections.Controllers
             uS = new UserService(context);
             lS = new LectionService(context);
         }
+
+        public IActionResult uNameAsc()
+        {
+            return View("Users" , uS.getAllUsers().OrderBy(n => n.username));
+        }
+        public IActionResult uNameDsc()
+        {
+            return View("Users", uS.getAllUsers().OrderByDescending(n => n.username));
+        }
+        public IActionResult starAsc()
+        {
+            return View("Users", uS.getAllUsers().OrderBy(n => n.ammountStars));
+        }
+        public IActionResult starDsc()
+        {
+            return View("Users", uS.getAllUsers().OrderByDescending(n => n.ammountStars));
+        }
+        public IActionResult lAsc()
+        {
+            return View("Users", uS.getAllUsers().OrderBy(n => n.ammountLections));
+        }
+        public IActionResult lDsc()
+        {
+            return View("Users", uS.getAllUsers().OrderByDescending(n => n.ammountLections));
+        }
+        public IActionResult admAsc()
+        {
+            return View("Users", uS.getAllUsers().OrderBy(n => n.isAdmin));
+        }
+        public IActionResult admDsc()
+        {
+            return View("Users", uS.getAllUsers().OrderByDescending(n => n.isAdmin));
+        }
+        public IActionResult emailAsc()
+        {
+            return View("Users", uS.getAllUsers().OrderBy(n => n.emailConfirmed));
+        }
+        public IActionResult emailDsc()
+        {
+            return View("Users", uS.getAllUsers().OrderByDescending(n => n.emailConfirmed));
+        }
+
 
         public IActionResult Users()
         {

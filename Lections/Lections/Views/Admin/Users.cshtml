@@ -14,7 +14,47 @@
 <body style="background-color:black">
     <div class="well">
         <table class="table">
-            <tr><td>Username</td><td>Firstname</td><td>Lastname</td><td>Email</td><td>Password</td><td>Stars</td><td>Lections</td><td>Admin</td><td>ConfirmedEmail</td><td>Edit/Delete</td><td>Admin/!Admin</td></tr>
+            <tr>
+                <td>
+                    Username
+                    <br /> <a asp-action="uNameAsc" asp-controller="Admin"> Asc </a> <a asp-action="uNameDsc" asp-controller="Admin"> Desc </a>
+                </td>
+            <td>
+                Firstname
+                </td>
+            <td>
+                Lastname
+                </td>
+            <td>
+                Email
+                </td>
+            <td>
+                Password
+                </td>
+            <td>
+
+                Stars
+                <br /> <a asp-action="starAsc" asp-controller="Admin"> Asc </a> <a asp-action="starDsc" asp-controller="Admin"> Desc </a>
+            </td>
+            <td>
+                Lections
+                <br /> <a asp-action="lAsc" asp-controller="Admin"> Asc </a> <a asp-action="lDsc" asp-controller="Admin"> Desc </a>
+            </td>
+            <td>
+                Admin
+                <br /> <a asp-action="admAsc" asp-controller="Admin"> Asc </a> <a asp-action="admDsc" asp-controller="Admin"> Desc </a>
+            </td>
+            <td>
+                ConfirmedEmail
+                <br /> <a asp-action="emailAsc" asp-controller="Admin"> Asc </a> <a asp-action="emailDsc" asp-controller="Admin"> Desc </a>
+            </td>
+            <td>
+                Edit/Delete
+                </td>
+            <td>
+                Admin/!Admin
+                </td>
+            </tr>
             @foreach (var item in Model)
             {
                 <tr>
