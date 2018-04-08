@@ -10,6 +10,7 @@ namespace Lections.Models
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Lection> Lections { get; set; }
+        public DbSet<Likes> Likes { get; set; }
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base (options)
         {
 

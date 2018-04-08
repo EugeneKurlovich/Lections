@@ -36,6 +36,30 @@ namespace Lections.Services
             unitOfWork.Lections.Create(lection);
         }
 
+        public int getAmmountStars(int id)
+        {
+            return unitOfWork.Lections.Get(id).UserId;
+        }
+
+        public Lection getAuthorByLName(string lName)
+        {
+            foreach ( Lection u in unitOfWork.Lections.GetAll())
+            {
+                if (u.name.Equals(lName))
+                {
+                    return u;
+                }
+            }
+            return null;
+        }
+
+        public void likeLection(int idLection, double nowStar)
+        {
+            Lection lection = unitOfWork.Lections.Get(idLection);
+            lection.stars = nowStar;
+            unitOfWork.Lections.Update(lection);
+        }
+
         public Lection getLectionByName(string name)
         {
             foreach (Lection lect in getAllLections())

@@ -27,12 +27,17 @@ namespace Lections.Services
             unitOfWork.Users.Update(u);
         }
 
-        public void getUserNameById(int id)
+        public string getUserNameById(int id)
         {
-            unitOfWork.Users.Get(id);
+            return unitOfWork.Users.Get(id).username;
         }
 
         public void plusLection(User u)
+        {
+            unitOfWork.Users.Update(u);
+        }
+
+        public void plusStar(User u)
         {
             unitOfWork.Users.Update(u);
         }

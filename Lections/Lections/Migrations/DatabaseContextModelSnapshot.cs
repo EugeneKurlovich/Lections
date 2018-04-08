@@ -35,7 +35,7 @@ namespace Lections.Migrations
 
                     b.Property<string>("smallDescription");
 
-                    b.Property<int>("stars");
+                    b.Property<double>("stars");
 
                     b.Property<string>("text");
 
@@ -44,6 +44,26 @@ namespace Lections.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Lections");
+                });
+
+            modelBuilder.Entity("Lections.Models.Likes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("LectionId");
+
+                    b.Property<int>("UserId");
+
+                    b.Property<int>("userStar");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LectionId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("Lections.Models.User", b =>
@@ -78,6 +98,19 @@ namespace Lections.Migrations
                 {
                     b.HasOne("Lections.Models.User", "User")
                         .WithMany("Lections")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Lections.Models.Likes", b =>
+                {
+                    b.HasOne("Lections.Models.Lection")
+                        .WithMany("Likes")
+                        .HasForeignKey("LectionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Lections.Models.User")
+                        .WithMany("Likes")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

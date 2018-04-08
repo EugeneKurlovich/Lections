@@ -1,4 +1,5 @@
-﻿@{
+﻿@model  IEnumerable<Lection>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,7 +7,24 @@
 <head>
     
 </head>
-<body style="background-color: black">
+<body style="background-color:black">
+    <div class="well">
+        <table class="table">
+            <tr><td>Name</td><td>Small description</td><td>Stars</td><td>Text</td><td>Create</td> <td>Update</td></tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.name </td>
+                    <td>@item.smallDescription</td>
+                    <td>@item.stars</td>
+                  
+                    <td><a href="~/Lections/ShowText/?name=@item.name">Show</a></td>
+                    <td>@item.dateCreate</td>
+                    <td>@item.dateUpdate</td>
 
-</body>
+                </tr>
+            }
+        </table>
+    </div>
+    </body>
 </html>

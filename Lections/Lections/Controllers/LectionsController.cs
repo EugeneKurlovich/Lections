@@ -12,11 +12,13 @@ namespace Lections.Controllers
     {
         UserService uS;
         LectionService lS;
+        LikeService lkS;
 
         public LectionsController(DatabaseContext context)
         {
             uS = new UserService(context);
             lS = new LectionService(context);
+            lkS = new LikeService(context);
         }
 
         public IActionResult CreateLection()
@@ -26,6 +28,8 @@ namespace Lections.Controllers
 
         public IActionResult ShowText(string name)
         {
+            Lection l = lS.getAuthorByLName(name);
+            ViewBag.usName = uS.getUserNameById(l.UserId);
             return View("ShowLection", lS.getLectionByName(name));
 
         }
@@ -51,6 +55,42 @@ namespace Lections.Controllers
         {
             return View("EditLection", lS.getLectionByName(name));
         }
+
+        [HttpGet]
+        public IActionResult getStars(string star, string name)
+        {
+            Lection l = lS.getAuthorByLName(name);
+            if (!lkS.checkExistLike (uS.getUserbyName(User.Identity.Name).Id, lS.getLectionByName(name).Id))
+            {
+                Likes like = new Likes();
+                like.userStar = Convert.ToInt32(star);
+                like.LectionId = lS.getLectionByName(name).Id;
+                like.UserId = uS.getUserbyName(User.Identity.Name).Id;
+                lkS.addLike(like);
+                lkS.Save();
+                lS.likeLection(lS.getLectionByName(name).Id, lkS.getNowRating(lS.getLectionByName(name).Id));
+                lS.Save();
+              
+                User user = uS.getUserById(l.UserId);
+                user.ammountStars++;
+                uS.plusStar(user);
+                uS.Save();
+               
+            }
+            else
+            {
+               Likes like = lkS.getLikeById(uS.getUserbyName(User.Identity.Name).Id, lS.getLectionByName(name).Id);
+                like.userStar = Convert.ToInt32(star);
+                lkS.updateLike(like);
+                lkS.Save();
+                lS.likeLection(lS.getLectionByName(name).Id, lkS.getNowRating(lS.getLectionByName(name).Id));
+                lS.Save();
+            }
+
+            ViewBag.usName = uS.getUserNameById(l.UserId);
+            return View("ShowLection", lS.getLectionByName(name));
+        }
+
 
         public IActionResult LectionDelete(string name)
         {

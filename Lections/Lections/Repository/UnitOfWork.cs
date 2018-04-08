@@ -11,6 +11,7 @@ namespace Lections.Repository
         public DatabaseContext db = new DatabaseContext();
         private UserRepository userRepository;
         private LectionRepository lectionRepository;
+        private LikeRepository likeRepository;
 
         public UnitOfWork(DatabaseContext context)
         {
@@ -24,6 +25,16 @@ namespace Lections.Repository
                 if (userRepository == null)
                     userRepository = new UserRepository(db);
                 return userRepository;
+            }
+        }
+
+        public LikeRepository Like
+        {
+            get
+            {
+                if (likeRepository == null)
+                    likeRepository = new LikeRepository(db);
+                return likeRepository;
             }
         }
 

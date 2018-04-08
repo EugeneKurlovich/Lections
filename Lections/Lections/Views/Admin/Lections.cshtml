@@ -12,9 +12,11 @@
     <h2 style="color:white"> Users Lections</h2>
 </head>
 
+<h1>@ViewBag.Message </h1>
 <body style="background-color:black">
     <div class="well">
         <table class="table">
+
             <tr><td>Name</td><td>Description</td><td>text</td><td>Stars</td><td>Create</td><td>Update</td><td>Creater</td><td>Edit/Delete</td></tr>
             @foreach (var item in Model)
             {
@@ -25,10 +27,10 @@
                     <td>@item.stars</td>
                     <td>@item.dateCreate</td>
                     <td>@item.dateUpdate</td>
-                    <td>                 
-                    @item.UserId
+                    <td>
+                        @item.UserId
                     </td>
-                   
+
                     <td><a href="~/Admin/AdminEditLection/?name=@item.name">Edit</a> <a href="~/Admin/AdminDeleteLection/?name=@item.name">Delete</a></td>
                 </tr>
             }

@@ -18,7 +18,9 @@ namespace Lections.Models
         public int ammountStars { get; set; }
         public int ammountLections { get; set; }
 
+       // public Like Like { get; set; }
         public List<Lection> Lections  { get; set; }
+        public List<Likes> Likes { get; set; }
 
         public User()
         {
