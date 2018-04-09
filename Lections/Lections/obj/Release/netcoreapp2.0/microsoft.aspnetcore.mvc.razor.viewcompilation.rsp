@@ -1,0 +1,23 @@
+D:\Itransition\Course Work\Lections\Lections
+--output-path=obj\Release\netcoreapp2.0\
+--application-name=Lections
+--content-root=D:\Itransition\Course Work\Lections\Lections
+--file=D:\Itransition\Course Work\Lections\Lections\Views\Admin\EditLection.cshtml
+--file=D:\Itransition\Course Work\Lections\Lections\Views\Admin\EditUser.cshtml
+--file=D:\Itransition\Course Work\Lections\Lections\Views\Admin\Lections.cshtml
+--file=D:\Itransition\Course Work\Lections\Lections\Views\Admin\Users.cshtml
+--file=D:\Itransition\Course Work\Lections\Lections\Views\Authorization\Confirmed.cshtml
+--file=D:\Itransition\Course Work\Lections\Lections\Views\Authorization\Index.cshtml
+--file=D:\Itransition\Course Work\Lections\Lections\Views\Authorization\SignUp.cshtml
+--file=D:\Itransition\Course Work\Lections\Lections\Views\Home\Index.cshtml
+--file=D:\Itransition\Course Work\Lections\Lections\Views\Home\ResultSearch.cshtml
+--file=D:\Itransition\Course Work\Lections\Lections\Views\Lections\AllLections.cshtml
+--file=D:\Itransition\Course Work\Lections\Lections\Views\Lections\CreateLection.cshtml
+--file=D:\Itransition\Course Work\Lections\Lections\Views\Lections\EditLection.cshtml
+--file=D:\Itransition\Course Work\Lections\Lections\Views\Lections\ShowLection.cshtml
+--file=D:\Itransition\Course Work\Lections\Lections\Views\Profile\Index.cshtml
+--file=D:\Itransition\Course Work\Lections\Lections\Views\Shared\Error.cshtml
+--file=D:\Itransition\Course Work\Lections\Lections\Views\Shared\_Layout.cshtml
+--file=D:\Itransition\Course Work\Lections\Lections\Views\Shared\_ValidationScriptsPartial.cshtml
+--file=D:\Itransition\Course Work\Lections\Lections\Views\_ViewImports.cshtml
+--file=D:\Itransition\Course Work\Lections\Lections\Views\_ViewStart.cshtml

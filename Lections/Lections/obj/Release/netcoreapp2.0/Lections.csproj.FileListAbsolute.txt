@@ -1,0 +1,11 @@
+D:\Itransition\Course Work\Lections\Lections\bin\Release\netcoreapp2.0\Lections.deps.json
+D:\Itransition\Course Work\Lections\Lections\bin\Release\netcoreapp2.0\Lections.runtimeconfig.json
+D:\Itransition\Course Work\Lections\Lections\bin\Release\netcoreapp2.0\Lections.runtimeconfig.dev.json
+D:\Itransition\Course Work\Lections\Lections\bin\Release\netcoreapp2.0\Lections.dll
+D:\Itransition\Course Work\Lections\Lections\bin\Release\netcoreapp2.0\Lections.pdb
+D:\Itransition\Course Work\Lections\Lections\obj\Release\netcoreapp2.0\Lections.csprojResolveAssemblyReference.cache
+D:\Itransition\Course Work\Lections\Lections\obj\Release\netcoreapp2.0\Lections.csproj.CoreCompileInputs.cache
+D:\Itransition\Course Work\Lections\Lections\obj\Release\netcoreapp2.0\Lections.AssemblyInfoInputs.cache
+D:\Itransition\Course Work\Lections\Lections\obj\Release\netcoreapp2.0\Lections.AssemblyInfo.cs
+D:\Itransition\Course Work\Lections\Lections\obj\Release\netcoreapp2.0\Lections.dll
+D:\Itransition\Course Work\Lections\Lections\obj\Release\netcoreapp2.0\Lections.pdb

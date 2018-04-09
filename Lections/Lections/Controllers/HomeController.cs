@@ -24,42 +24,34 @@ namespace Lections.Controllers
             var lections = (from l in lS.getAllLections() where l.name.Contains(filter) select l).ToList();
             return View("Index", lections);
         }
-
         public IActionResult nameAsc()
         {
             return View("Index", lS.getAllLections().OrderBy(n => n.name));
         }
-
         public IActionResult nameDsc()
         {
             return View("Index", lS.getAllLections().OrderByDescending(n => n.name));
         }
-
         public IActionResult starsAsc()
         {
             return View("Index", lS.getAllLections().OrderBy(n => n.stars));
         }
-
         public IActionResult starsDsc()
         {
             return View("Index", lS.getAllLections().OrderByDescending(n => n.stars));
         }
-
         public IActionResult cDateAsc()
         {
             return View("Index", lS.getAllLections().OrderBy(n => n.dateCreate));
         }
-
         public IActionResult cDateDsc()
         {
             return View("Index", lS.getAllLections().OrderByDescending(n => n.dateCreate));
         }
-
         public IActionResult uDateAsc()
         {
             return View("Index", lS.getAllLections().OrderBy(n => n.dateUpdate));
         }
-
         public IActionResult uDateDsc()
         {
             return View("Index", lS.getAllLections().OrderByDescending(n => n.dateUpdate));
@@ -68,6 +60,12 @@ namespace Lections.Controllers
         public IActionResult Index()
         {
             return View(lS.getAllLections());
+        }
+
+        public IActionResult SearchLections(string inputSearch)
+        {
+            var searchLections = (from l in lS.getAllLections() where l.name.ToUpper().Contains(inputSearch.ToUpper()) || l.smallDescription.ToUpper().Contains(inputSearch.ToUpper()) || l.text.ToUpper().Contains(inputSearch.ToUpper()) select l).ToList();
+            return View("ResultSearch",searchLections);
         }
 
         public IActionResult Error()
