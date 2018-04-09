@@ -16,14 +16,7 @@ namespace Lections.Services
 
             Email email = JsonConvert.DeserializeObject<Email>(File.ReadAllText(@"emailconfig.json"));
 
-            // deserialize JSON directly from a file
-            using (StreamReader file = File.OpenText(@"emailconfig.json"))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                Email email2 = (Email)serializer.Deserialize(file, typeof(Email));
-            }
-
-            MailAddress from = new MailAddress("zhenikpggkurlovich@gmail.com", "Web Registration");
+            MailAddress from = new MailAddress(email.login, "Web Registration");
             MailAddress to = new MailAddress(Email);
             MailMessage m = new MailMessage(from, to);
             m.Subject = "Email confirmation";

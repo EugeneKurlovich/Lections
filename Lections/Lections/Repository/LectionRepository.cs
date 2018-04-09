@@ -18,7 +18,7 @@ namespace Lections.Repository
 
         public IEnumerable<Lection> GetAll()
         {
-            return db.Lections;
+            return db.Lections.Include(u => u.User);
         }
 
         public Lection Get(int id)
