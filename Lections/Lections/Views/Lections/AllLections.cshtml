@@ -16,6 +16,10 @@
                     Name
                     <br /> <a asp-action="nameAsc" asp-controller="Lections"> Asc </a> <a asp-action="nameDsc" asp-controller="Lections"> Desc </a>
                 </td>
+                <td>
+                    Subject
+                    <br /> <a asp-action="subjAsc" asp-controller="Lections"> Asc </a> <a asp-action="subjDsc" asp-controller="Lections"> Desc </a>
+                </td>
                 <td>Small description</td>
                 <td>
                     Stars
@@ -37,6 +41,7 @@
             {
             <tr>
                 <td>@item.name </td>
+                <td>@item.subject</td>
                 <td>@item.smallDescription</td>
                 <td>@item.stars</td>
                 <td><a href="~/Lections/ShowText/?name=@item.name">Show</a></td>

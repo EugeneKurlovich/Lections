@@ -9,6 +9,7 @@ namespace Lections.Models
     {
         public int Id { get; set; }
         public string name { get; set; }
+        public string subject { get; set; }
         public string smallDescription { set; get; }
         public string text { set; get; }
         public double stars { set; get; }

@@ -21,8 +21,17 @@ namespace Lections.Controllers
 
         public IActionResult filterName(string filter)
         {
-            var lections = (from l in lS.getAllLections() where l.name.Contains(filter) select l).ToList();
+            var lections = (from l in lS.getAllLections() where l.subject.Contains(filter) select l).ToList();
             return View("Index", lections);
+        }
+
+        public IActionResult subjAsc()
+        {
+            return View("Index", lS.getAllLections().OrderBy(n => n.subject));
+        }
+        public IActionResult subjDsc()
+        {
+            return View("Index", lS.getAllLections().OrderByDescending(n => n.subject));
         }
         public IActionResult nameAsc()
         {
@@ -64,7 +73,11 @@ namespace Lections.Controllers
 
         public IActionResult SearchLections(string inputSearch)
         {
-            var searchLections = (from l in lS.getAllLections() where l.name.ToUpper().Contains(inputSearch.ToUpper()) || l.smallDescription.ToUpper().Contains(inputSearch.ToUpper()) || l.text.ToUpper().Contains(inputSearch.ToUpper()) select l).ToList();
+            var searchLections = (from l in lS.getAllLections() where l.name.ToUpper().Contains(inputSearch.ToUpper()) ||
+                                  l.smallDescription.ToUpper().Contains(inputSearch.ToUpper()) ||
+                                  l.text.ToUpper().Contains(inputSearch.ToUpper()) ||
+                                   l.subject.ToUpper().Contains(inputSearch.ToUpper())
+                                  select l).ToList();
             return View("ResultSearch",searchLections);
         }
 

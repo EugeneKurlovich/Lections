@@ -13,7 +13,17 @@ namespace Lections.Controllers
     {
         UserService uS;
         LectionService lS;
+        LikeService lkS;
 
+
+        public IActionResult subjAsc()
+        {
+            return View("Lections", lS.getAllLections().OrderBy(n => n.subject));
+        }
+        public IActionResult subjDsc()
+        {
+            return View("Lections", lS.getAllLections().OrderByDescending(n => n.subject));
+        }
         public IActionResult idAsc()
         {
             return View("Lections", lS.getAllLections().OrderBy(n => n.UserId));
@@ -59,8 +69,8 @@ namespace Lections.Controllers
         {
             uS = new UserService(context);
             lS = new LectionService(context);
+            lkS = new LikeService(context);
         }
-
         public IActionResult uNameAsc()
         {
             return View("Users" , uS.getAllUsers().OrderBy(n => n.username));
@@ -182,8 +192,11 @@ namespace Lections.Controllers
 
         public IActionResult AdminDelete(string username)
         {
+
             uS.deleteProfile(uS.getUserbyName(username));
+            lkS.deleteUserLikes(uS.getUserIdByName(username));
             uS.Save();
+            lkS.Save();
             return RedirectToAction("Users", "Admin");
         }
 

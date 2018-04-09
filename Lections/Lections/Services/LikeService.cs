@@ -40,6 +40,17 @@ namespace Lections.Services
             return null;
         }
 
+        public void deleteUserLikes(int id)
+        {
+            foreach (Likes l in unitOfWork.Like.GetAll())
+            {
+                if (l.UserId.Equals(id))
+                {
+                    unitOfWork.Like.Delete(l.Id);
+                }
+            }
+        }
+
         public void updateLike(Likes like)
         {
             unitOfWork.Like.Update(like);

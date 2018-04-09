@@ -21,6 +21,10 @@
                     Name
                     <br /> <a asp-action="nameAsc" asp-controller="Admin"> Asc </a> <a asp-action="nameDsc" asp-controller="Admin"> Desc </a>
                 </td>
+                <td>
+                    Subject
+                    <br /> <a asp-action="subjAsc" asp-controller="Admin"> Asc </a> <a asp-action="subjDsc" asp-controller="Admin"> Desc </a>
+                </td>
                 <td>Small description</td>
                 <td>
                     Stars
@@ -43,19 +47,20 @@
             </tr>
             @foreach (var item in Model)
     {
-        <tr>
-            <td>@item.name </td>
-            <td>@item.smallDescription</td>
-            <td>@item.text</td>
-            <td>@item.stars</td>
-            <td>@item.dateCreate</td>
-            <td>@item.dateUpdate</td>
-            <td>
-                @item.User.username
-            </td>
+            <tr>
+                <td>@item.name </td>
+                <td>@item.subject</td>
+                <td>@item.smallDescription</td>
+                <td>@item.stars</td>
+                <td>@item.text</td>
+                <td>@item.dateCreate</td>
+                <td>@item.dateUpdate</td>
+                <td>
+                    @item.User.username
+                </td>
 
-            <td><a href="~/Admin/AdminEditLection/?name=@item.name">Edit</a> <a href="~/Admin/AdminDeleteLection/?name=@item.name">Delete</a></td>
-        </tr>
+                <td><a href="~/Admin/AdminEditLection/?name=@item.name">Edit</a> <a href="~/Admin/AdminDeleteLection/?name=@item.name">Delete</a></td>
+            </tr>
 }
         </table>
     </div>

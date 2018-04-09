@@ -163,18 +163,19 @@
 
 <body style="background-color:black">
     <div class="container">
-        <h2 style="color:white">Rating: @Model.stars</h2>
+        <h2 style="color:white">Rating: @Math.Round(@Model.stars, 1)</h2>
         <h2 style="color:white"> Author : @ViewBag.usName </h2>
+        <h2 style="color:white"> Subject : @Model.subject </h2>
         @if (@User.Identity.IsAuthenticated && !(@ViewBag.usName.Equals(@User.Identity.Name)))
-        {
-            <form>
-                <br />
-                <h2 style="color:white">Lection name :</h2> <input style="border-color:black; background-color:black; color:white; font-size:medium" type="text" value="@Model.name" name="name" />
-                <input input id="input-1" name="star" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="@Model.stars">
-                <br />
-                <input type="submit" value="Like" asp-controller="Lections" asp-action="getStars" class="btn btn-success" />
-            </form>
-        }
+    {
+        <form>
+            <br />
+            <h2 style="color:white">Lection name :</h2> <input style="border-color:black; background-color:black; color:white; font-size:medium" type="text" value="@Model.name" name="name" />
+            <input input id="input-1" name="star" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="@Model.stars">
+            <br />
+            <input type="submit" value="Like" asp-controller="Lections" asp-action="getStars" class="btn btn-success" />
+        </form>
+}
     </div>
     <br />
     <br />

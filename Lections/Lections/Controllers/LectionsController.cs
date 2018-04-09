@@ -21,6 +21,15 @@ namespace Lections.Controllers
             lkS = new LikeService(context);
         }
 
+        public IActionResult subjAsc()
+        {
+            return View("AllLections", lS.getAllLections().OrderBy(n => n.subject));
+        }
+        public IActionResult subjDsc()
+        {
+            return View("AllLections", lS.getAllLections().OrderByDescending(n => n.subject));
+        }
+
         public IActionResult nameAsc()
         {
             return View("AllLections", lS.getLectionsByUser(uS.getUserIdByName(User.Identity.Name)).OrderBy(n => n.name));

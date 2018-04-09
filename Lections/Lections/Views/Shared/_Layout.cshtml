@@ -19,11 +19,9 @@
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Main Page</a>
-            </div>
+        <div class="container">        
             <div class="navbar-collapse collapse">
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Main Page</a>
                 @if (User.Identity.IsAuthenticated)
     {
             <a asp-area="" asp-controller="Lections" asp-action="AllLections" class="navbar-brand"> My Lections</a>
